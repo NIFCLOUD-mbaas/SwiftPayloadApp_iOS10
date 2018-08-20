@@ -4,12 +4,12 @@
 ![画像1](/readme-img/001.png)
 
 ## 概要
-* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の『プッシュ通知』機能とプッシュ通知を受信する際、プッシュ通知の『ペイロードデータを取得する』機能を実装したサンプルプロジェクトです
-* 簡単な操作ですぐに [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の機能を体験いただけます★☆
+* [ニフクラ mobile backend](http://mb.cloud.nifty.com/)の『プッシュ通知』機能とプッシュ通知を受信する際、プッシュ通知の『ペイロードデータを取得する』機能を実装したサンプルプロジェクトです
+* 簡単な操作ですぐに [ニフクラ mobile backend](http://mb.cloud.nifty.com/)の機能を体験いただけます★☆
 * このサンプルはiOS10に対応しています
  * iOS8以上でご利用いただけます
 
-## ニフティクラウドmobile backendって何？？
+## ニフクラ mobile backendって何？？
 スマートフォンアプリのバックエンド機能（プッシュ通知・データストア・会員管理・ファイルストア・SNS連携・位置情報検索・スクリプト）が**開発不要**、しかも基本**無料**(注1)で使えるクラウドサービス！
 
 注1：詳しくは[こちら](http://mb.cloud.nifty.com/price.htm)をご覧ください
@@ -25,12 +25,12 @@
 ※上記内容で動作確認をしています
 
 ## プッシュ通知の仕組み
-* ニフティクラウドmobile backendのプッシュ通知は、iOSが提供している通知サービスを利用しています
+* ニフクラ mobile backendのプッシュ通知は、iOSが提供している通知サービスを利用しています
  * iOSの通知サービス　__APNs（Apple Push Notification Service）__
 
  ![画像10](/readme-img/010.png)
 
-* 上図のように、アプリ（Xcode）・サーバー（ニフティクラウドmobile backend）・通知サービス（APNs）の間でやり取りを行うため、認証が必要になります
+* 上図のように、アプリ（Xcode）・サーバー（ニフクラ mobile backend）・通知サービス（APNs）の間でやり取りを行うため、認証が必要になります
  * 認証に必要な鍵や証明書の作成は作業手順の「0.プッシュ通知機能使うための準備」で行います
 
 ## 作業の手順
@@ -41,13 +41,13 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 ![画像i002](/readme-img/i002.png)
 
-### 1. [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)の会員登録とログイン→アプリ作成と設定
+### 1. [ニフクラ mobile backend](http://mb.cloud.nifty.com/)の会員登録とログイン→アプリ作成と設定
 * 上記リンクから会員登録（無料）をします。登録ができたらログインをすると下図のように「アプリの新規作成」画面が出るのでアプリを作成します
 
 ![画像3](/readme-img/003.png)
 
 * アプリ作成されると下図のような画面になります
-* この２種類のAPIキー（アプリケーションキーとクライアントキー）はXcodeで作成するiOSアプリに[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)を紐付けるために使用します
+* この２種類のAPIキー（アプリケーションキーとクライアントキー）はXcodeで作成するiOSアプリに[ニフクラ mobile backend](http://mb.cloud.nifty.com/)を紐付けるために使用します
 
 ![画像4](/readme-img/004.png)
 
@@ -76,7 +76,7 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 ### 4. APIキーの設定
 
 * `AppDelegate.swift`を編集します
-* 先程[ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます
+* 先程[ニフクラ mobile backend](http://mb.cloud.nifty.com/)のダッシュボード上で確認したAPIキーを貼り付けます
 
 ![画像07](/readme-img/007.png)
 
@@ -121,13 +121,13 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 * インストールしたアプリを起動します
  * プッシュ通知の許可を求めるアラートが出たら、必ず許可してください！
 * 起動されたらこの時点でデバイストークンが取得されます
-* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボードで「データストア」＞「installation」クラスを確認してみましょう！
+* [ニフクラ mobile backend](http://mb.cloud.nifty.com/)のダッシュボードで「データストア」＞「installation」クラスを確認してみましょう！
 
 ![画像12](/readme-img/012.png)
 
 ### 7.プッシュ通知を送って、データを取得しましょう（アプリ起動時）
 * まずはアプリを__起動した状態__でプッシュ通知を送ってみましょう！
-* [ニフティクラウドmobile backend](http://mb.cloud.nifty.com/)のダッシュボードで「プッシュ通知」＞「＋新しいプッシュ通知」をクリックします
+* [ニフクラ mobile backend](http://mb.cloud.nifty.com/)のダッシュボードで「プッシュ通知」＞「＋新しいプッシュ通知」をクリックします
 * プッシュ通知のフォームが開かれます
 * タイトル、メッセージ、JSON、URL（他も後ほど試してみてください）を入力してプッシュ通知を作成します
 
@@ -154,7 +154,7 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
  * サンプルプロジェクトに実装済みの内容
 
 ### ペイロードデータについて
-* ニフティクラウドmobile backendのダッシュボードで入力した内容は以下のようなJSONデータとして、端末に届きます
+* ニフクラ mobile backendのダッシュボードで入力した内容は以下のようなJSONデータとして、端末に届きます
 
 ```JSON
 {
@@ -178,11 +178,11 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 ### サンプルプロジェクトに実装済みの内容
 #### SDKのインポートと初期設定
-* ニフティクラウドmobile backend の[ドキュメント（クイックスタート）](http://mb.cloud.nifty.com/doc/current/introduction/quickstart_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
+* ニフクラ mobile backend の[ドキュメント（クイックスタート）](http://mb.cloud.nifty.com/doc/current/introduction/quickstart_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
  * [SwiftでmBaaSを始めよう！(＜CocoaPods＞でuse_framewoks!を有効にした方法)](http://qiita.com/natsumo/items/57d3a4d9be16b0490965)
 
 #### コード紹介
-##### デバイストークン取得とニフティクラウドmobile backendへの保存
+##### デバイストークン取得とニフクラ mobile backendへの保存
  * `AppDelegate.swift`の`didFinishLaunchingWithOptions`メソッドにAPNsに対してデバイストークンの要求するコードを記述し、デバイストークンが取得された後に呼び出される`didRegisterForRemoteNotificationsWithDeviceToken`メソッドを追記をします
  * デバイストークンの要求はiOSのバージョンによってコードが異なります
 
@@ -287,7 +287,7 @@ _アプリ起動時に受信する場合_
 ```
 
 ## 参考
-* ニフティクラウドmobile backend の[ドキュメント（プッシュ通知）](http://mb.cloud.nifty.com/doc/current/push/basic_usage_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
+* ニフクラ mobile backend の[ドキュメント（プッシュ通知）](http://mb.cloud.nifty.com/doc/current/push/basic_usage_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
  * [Swift3(iOS10)] [--準備中--](http://mb.cloud.nifty.com/)
  * [Swift2(iOS9,8)] [Swiftでプッシュ通知を送ろう！](http://qiita.com/natsumo/items/8ffafee05cb7eb69d815)
 * 同じ内容の【Objective-C】版もご用意しています
