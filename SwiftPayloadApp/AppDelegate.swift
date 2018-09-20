@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var payload_flag = false
 
     // APIキーの設定
-    let applicationkey = "0e223936df11872251171e5a3c0c75a23e727f72b31fb9ee28fc22129df100cb"
-    let clientkey      = "291623c9dd66b53bafbb9fedd6cca92855604852ed25ebc320528adc08702d21"
+    let applicationkey = "YOUR_NCMB_APPLICATIONKEY"
+    let clientkey      = "YOUR_NCMB_CLIENTKEY"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
