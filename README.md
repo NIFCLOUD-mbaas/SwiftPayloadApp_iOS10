@@ -165,9 +165,9 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
         },
         "sound" : "default"
     },
-    "com.nifty.PushId" : "********",
+    "com.nifcloud.mbaas.PushId" : "********",
     "data" : "json",
-    "com.nifty.RichUrl" : "https://mbaas.nifcloud.com/"
+    "com.nifcloud.mbaas.RichUrl" : "https://mbaas.nifcloud.com/"
 }
 ```
 
