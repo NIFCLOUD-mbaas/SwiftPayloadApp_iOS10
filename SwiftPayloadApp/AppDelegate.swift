@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let applicationkey = "YOUR_NCMB_APPLICATIONKEY"
     let clientkey      = "YOUR_NCMB_CLIENTKEY"
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // SDKの初期化
         NCMB.setApplicationKey(applicationkey, clientKey: clientkey)
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // 【ペイロード：アプリ非起動時に受信】アプリが起動されたときにプッシュ通知の情報を取得する
-        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
+        if let remoteNotification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? NSDictionary {
             // flag
             payload_flag = true
             // log(実機)
@@ -111,10 +111,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 【ペイロード：アプリ起動時に受信】アプリが起動中にプッシュ通知の情報を取得する
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // 状態Check
-        if application.applicationState == UIApplicationState.inactive {
+        if application.applicationState == UIApplication.State.inactive {
             // inactive
             print("inactive")
-        } else if application.applicationState == UIApplicationState.active {
+        } else if application.applicationState == UIApplication.State.active {
             // active
             print("active")
         } else {
