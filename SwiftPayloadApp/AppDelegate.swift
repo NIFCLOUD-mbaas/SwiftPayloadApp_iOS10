@@ -39,12 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             center.requestAuthorization(options: [.alert, .badge, .sound]) {granted, error in
                 if error != nil {
                     // エラー時の処理
-                    print("エラーが発生しました：[\(error)]")
+                    print("エラーが発生しました：[\(error?.localizedDescription ?? "")]")
                     return
                 }
                 if granted {
                     // デバイストークンの要求
-                    UIApplication.shared.registerForRemoteNotifications()
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
                 }
             }
         } else {
