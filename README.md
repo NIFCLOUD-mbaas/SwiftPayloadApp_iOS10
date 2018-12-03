@@ -1,5 +1,5 @@
 # 【iOS10 Swift】プッシュ通知からデータを取得してみよう！（ペイロード）
-*2016/10/07作成*
+*2016/10/07作成（2018/12/15更新）*
 
 ![画像1](/readme-img/001.png)
 
@@ -7,7 +7,7 @@
 * [ニフクラ mobile backend](https://mbaas.nifcloud.com/)の『プッシュ通知』機能とプッシュ通知を受信する際、プッシュ通知の『ペイロードデータを取得する』機能を実装したサンプルプロジェクトです
 * 簡単な操作ですぐに [ニフクラ mobile backend](https://mbaas.nifcloud.com/)の機能を体験いただけます★☆
 * このサンプルはiOS10に対応しています
- * iOS8以上でご利用いただけます
+  * iOS8以上でご利用いただけます
 
 ## ニフクラ mobile backendって何？？
 スマートフォンアプリのバックエンド機能（プッシュ通知・データストア・会員管理・ファイルストア・SNS連携・位置情報検索・スクリプト）が**開発不要**、しかも基本**無料**(注1)で使えるクラウドサービス！
@@ -20,28 +20,29 @@
 * macOS Sierra 10.12
 * Xcode ver. 8.0
 * iPhone6 ver. 10.0.1
- * このサンプルアプリは、プッシュ通知を受信する必要があるため実機ビルドが必要です
+* swift ver. 4.2
+  * このサンプルアプリは、プッシュ通知を受信する必要があるため実機ビルドが必要です
 
 ※上記内容で動作確認をしています
 
 ## プッシュ通知の仕組み
 * ニフクラ mobile backendのプッシュ通知は、iOSが提供している通知サービスを利用しています
- * iOSの通知サービス　__APNs（Apple Push Notification Service）__
+  * iOSの通知サービス　__APNs（Apple Push Notification Service）__
 
  ![画像10](/readme-img/010.png)
 
 * 上図のように、アプリ（Xcode）・サーバー（ニフクラ mobile backend）・通知サービス（APNs）の間でやり取りを行うため、認証が必要になります
- * 認証に必要な鍵や証明書の作成は作業手順の「0.プッシュ通知機能使うための準備」で行います
+  * 認証に必要な鍵や証明書の作成は作業手順の「0.プッシュ通知機能使うための準備」で行います
 
 ## 作業の手順
 ### 0.プッシュ通知機能使うための準備
 __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発用)](https://github.com/natsumo/iOS_Certificate)__
 * 上記のドキュメントをご覧の上、必要な証明書類の作成をお願いします
- * 証明書の作成には[Apple Developer Program](https://developer.apple.com/account/)の登録（有料）が必要です
+  * 証明書の作成には[Apple Developer Program](https://developer.apple.com/account/)の登録（有料）が必要です
 
 ![画像i002](/readme-img/i002.png)
 
-### 1. [ニフクラ mobile backend](https://mbaas.nifcloud.com/)の会員登録とログイン→アプリ作成と設定
+### 1. [ニフクラ mobile backend](https://mbaas.nifcloud.com/signup.htm)の会員登録とログイン→アプリ作成と設定
 * 上記リンクから会員登録（無料）をします。登録ができたらログインをすると下図のように「アプリの新規作成」画面が出るのでアプリを作成します
 
 ![画像3](/readme-img/003.png)
@@ -60,7 +61,7 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 * 下記リンクをクリックしてプロジェクトをダウンロードをMacにダウンロードします
 
- * __[SwiftPayloadApp](https://github.com/natsumo/SwiftPayloadApp_iOS10/archive/master.zip)__
+  * __[SwiftPayloadApp](https://github.com/natsumo/SwiftPayloadApp_iOS10/archive/master.zip)__
 
 ### 3. Xcodeでアプリを起動
 
@@ -81,19 +82,19 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 ![画像07](/readme-img/007.png)
 
 * それぞれ`YOUR_NCMB_APPLICATION_KEY`と`YOUR_NCMB_CLIENT_KEY`の部分を書き換えます
- * このとき、ダブルクォーテーション（`"`）を消さないように注意してください！
+  * このとき、ダブルクォーテーション（`"`）を消さないように注意してください！
 * 書き換え終わったら`command + s`キーで保存をします
 
 ### 5. 実機ビルド
 * 始めて実機ビルドをする場合は、Xcodeにアカウント（AppleID）の登録をします
- * メニューバーの「Xcode」＞「Preferences...」を選択します
- * Accounts画面が開いたら、左下の「＋」をクリックします。
- * Apple IDとPasswordを入力して、「Add」をクリックします
+  * メニューバーの「Xcode」＞「Preferences...」を選択します
+  * Accounts画面が開いたら、左下の「＋」をクリックします。
+  * Apple IDとPasswordを入力して、「Add」をクリックします
 
  ![画像i29](/readme-img/i029.png)
 
- * 追加されると、下図のようになります。追加した情報があっていればOKです
- * 確認できたら閉じます。
+  * 追加されると、下図のようになります。追加した情報があっていればOKです
+  * 確認できたら閉じます。
 
  ![画像i30](/readme-img/i030.png)
 
@@ -102,15 +103,15 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 ![画像14](/readme-img/014.png)
 
 * 「Identity」＞「Bundle Identifier」を入力します
- * 「Bundle Identifier」にはAppID作成時に指定した「Bundle ID」を入力してください
+  * 「Bundle Identifier」にはAppID作成時に指定した「Bundle ID」を入力してください
 * 「Signing(Debug)」＞「Provisioning Profile」を設定します
- * 今回使用するプロビジョニングプロファイルをプルダウンから選択します
- * プロビジョニングプロファイルはダウンロードしたものを一度__ダブルクリック__して認識させておく必要があります（プルダウンに表示されない場合はダブルクリックを実施後設定してください）
- * 選択すると以下のようになります
+  * 今回使用するプロビジョニングプロファイルをプルダウンから選択します
+  * プロビジョニングプロファイルはダウンロードしたものを一度__ダブルクリック__して認識させておく必要があります（プルダウンに表示されない場合はダブルクリックを実施後設定してください）
+  * 選択すると以下のようになります
  ![画像15](/readme-img/015.png)
 
 * 「TARGETS」＞「Capabilities」を開き、「Push Notifications」を__ON__に設定します
- * 設定すると以下のようになります
+  * 設定すると以下のようになります
  ![画像16](/readme-img/016.png)
 
 * 設定は完了です
@@ -119,7 +120,7 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 ### 6.動作確認
 * インストールしたアプリを起動します
- * プッシュ通知の許可を求めるアラートが出たら、必ず許可してください！
+  * プッシュ通知の許可を求めるアラートが出たら、必ず許可してください！
 * 起動されたらこの時点でデバイストークンが取得されます
 * [ニフクラ mobile backend](https://mbaas.nifcloud.com/)のダッシュボードで「データストア」＞「installation」クラスを確認してみましょう！
 
@@ -135,7 +136,7 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 * 端末を確認しましょう！
 * 少し待つとプッシュ通知が届きます
- * アプリ起動時はプッシュ通知が__表示されません__！（iOSの仕様）ただし、プッシュ通知が受信できていないわけではなく、正しく配信されていれば、ペイロードを受信し、画面に表示します
+  * アプリ起動時はプッシュ通知が__表示されません__！（iOSの仕様）ただし、プッシュ通知が受信できていないわけではなく、正しく配信されていれば、ペイロードを受信し、画面に表示します
 * ペイロードデータの見方については「解説」をご覧ください
 
 ### 8.プッシュ通知を送って、データを取得しましょう（非アプリ起動時）
@@ -150,8 +151,8 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 ## 解説
 * 下記２点について解説します
- * ペイロードデータについて
- * サンプルプロジェクトに実装済みの内容
+  * ペイロードデータについて
+  * サンプルプロジェクトに実装済みの内容
 
 ### ペイロードデータについて
 * ニフクラ mobile backendのダッシュボードで入力した内容は以下のようなJSONデータとして、端末に届きます
@@ -179,12 +180,12 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 ### サンプルプロジェクトに実装済みの内容
 #### SDKのインポートと初期設定
 * ニフクラ mobile backend の[ドキュメント（クイックスタート）](https://mbaas.nifcloud.com/doc/current/introduction/quickstart_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
- * [SwiftでmBaaSを始めよう！(＜CocoaPods＞でuse_framewoks!を有効にした方法)](http://qiita.com/natsumo/items/57d3a4d9be16b0490965)
+  * [SwiftでmBaaSを始めよう！(＜CocoaPods＞でuse_framewoks!を有効にした方法)](http://qiita.com/natsumo/items/57d3a4d9be16b0490965)
 
 #### コード紹介
 ##### デバイストークン取得とニフクラ mobile backendへの保存
- * `AppDelegate.swift`の`didFinishLaunchingWithOptions`メソッドにAPNsに対してデバイストークンの要求するコードを記述し、デバイストークンが取得された後に呼び出される`didRegisterForRemoteNotificationsWithDeviceToken`メソッドを追記をします
- * デバイストークンの要求はiOSのバージョンによってコードが異なります
+  * `AppDelegate.swift`の`didFinishLaunchingWithOptions`メソッドにAPNsに対してデバイストークンの要求するコードを記述し、デバイストークンが取得された後に呼び出される`didRegisterForRemoteNotificationsWithDeviceToken`メソッドを追記をします
+  * デバイストークンの要求はiOSのバージョンによってコードが異なります
 
 ```swift
 //
@@ -257,8 +258,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ##### ペイロード取得
 
 * プッシュ通知からペイロードを取得するコードは下記の２パターンあります
- * 【ペイロード：アプリ非起動時に受信】アプリが起動されたときにプッシュ通知の情報を取得する
- * 【ペイロード：アプリ起動時に受信】アプリが起動中にプッシュ通知の情報を取得する
+  * 【ペイロード：アプリ非起動時に受信】アプリが起動されたときにプッシュ通知の情報を取得する
+  * 【ペイロード：アプリ起動時に受信】アプリが起動中にプッシュ通知の情報を取得する
 
 * それぞれ`AppDelegate.swift`の次の箇所に追記します
 
@@ -288,7 +289,7 @@ _アプリ起動時に受信する場合_
 
 ## 参考
 * ニフクラ mobile backend の[ドキュメント（プッシュ通知）](https://mbaas.nifcloud.com/doc/current/push/basic_usage_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
- * [Swift3(iOS10)] [--準備中--](https://mbaas.nifcloud.com/)
- * [Swift2(iOS9,8)] [Swiftでプッシュ通知を送ろう！](http://qiita.com/natsumo/items/8ffafee05cb7eb69d815)
+  * [Swift3(iOS10)] [--準備中--](https://mbaas.nifcloud.com/)
+  * [Swift2(iOS9,8)] [Swiftでプッシュ通知を送ろう！](http://qiita.com/natsumo/items/8ffafee05cb7eb69d815)
 * 同じ内容の【Objective-C】版もご用意しています
- * [ObjcPayloadApp_iOS10](--準備中--)
+  * [ObjcPayloadApp_iOS10](--準備中--)
