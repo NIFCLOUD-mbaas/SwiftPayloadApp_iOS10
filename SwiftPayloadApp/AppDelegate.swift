@@ -24,41 +24,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var payload_flag = false
 
     // APIキーの設定
-    let applicationkey = "YOUR_NCMB_APPLICATIONKEY"
-    let clientkey      = "YOUR_NCMB_CLIENTKEY"
+    let applicationkey = "4f59442c0c54dd9d40597d9c558a3b9b90c1e6b206d5a5b1eb38a103b5ffbf7d"
+    let clientkey      = "67d5255c6b150246b09c3409c52fa1719db17b2d55fccfba0a7403b3f88f93a9"
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // SDKの初期化
-        NCMB.setApplicationKey(applicationkey, clientKey: clientkey)
+        NCMB.initialize(applicationKey: applicationkey, clientKey: clientkey)
 
         // デバイストークンの要求
-        if #available(iOS 10.0, *){
-            /** iOS10以上 **/
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .badge, .sound]) {granted, error in
-                if error != nil {
-                    // エラー時の処理
-                    print("エラーが発生しました：[\(error)]")
-                    return
-                }
-                if granted {
-                    // デバイストークンの要求
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) {granted, error in
+            if error != nil {
+                // エラー時の処理
+                print("エラーが発生しました：[\(String(describing: error))]")
+                return
             }
-        } else {
-            /** iOS8以上iOS10未満 **/
-            //通知のタイプを設定したsettingを用意
-            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            //通知のタイプを設定
-            application.registerUserNotificationSettings(setting)
-            //DevoceTokenを要求
-            UIApplication.shared.registerForRemoteNotifications()
+            if granted {
+                // デバイストークンの要求
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
 
         // 【ペイロード：アプリ非起動時に受信】アプリが起動されたときにプッシュ通知の情報を取得する
-        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
+        if let remoteNotification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? NSDictionary {
             // flag
             payload_flag = true
             // log(実機)
@@ -93,17 +82,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // デバイストークンが取得されたら呼び出されるメソッド
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // 端末情報を扱うNCMBInstallationのインスタンスを作成
-        let installation : NCMBInstallation = NCMBInstallation.current()
+        let installation : NCMBInstallation = NCMBInstallation.currentInstallation
         // デバイストークンの設定
-        installation.setDeviceTokenFrom(deviceToken)
+        installation.setDeviceTokenFromData(data: deviceToken)
         // 端末情報をデータストアに登録
-        installation.saveInBackground {error in
-            if error != nil {
-                // 端末情報の登録に失敗した時の処理
-                print("デバイストークン取得に失敗しました：\(error)")
-            } else {
-                // 端末情報の登録に成功した時の処理
-                print("デバイストークン取得に成功しました")
+        installation.saveInBackground {result in
+            switch result {
+                case .success:
+                    print("デバイストークン取得に成功しました")
+                    break
+            case let .failure(error):
+                    // 端末情報の登録に失敗した時の処理
+                    print("デバイストークン取得に失敗しました：\(error)")
+                    break
             }
         }
     }
@@ -111,10 +102,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 【ペイロード：アプリ起動時に受信】アプリが起動中にプッシュ通知の情報を取得する
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         // 状態Check
-        if application.applicationState == UIApplicationState.inactive {
+        if application.applicationState == UIApplication.State.inactive {
             // inactive
             print("inactive")
-        } else if application.applicationState == UIApplicationState.active {
+        } else if application.applicationState == UIApplication.State.active {
             // active
             print("active")
         } else {
