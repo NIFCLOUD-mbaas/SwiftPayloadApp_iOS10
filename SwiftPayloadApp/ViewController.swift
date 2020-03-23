@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  SwiftPayloadApp
 //
-//  Created by Natsumo Ikeda on 2016/10/07.
-//  Copyright 2019 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
+//  Created by Natsumo Ikeda on 2016/10/07 (update on 2020/03/23).
+//  Copyright 2020 FUJITSU CLOUD TECHNOLOGIES LIMITED All Rights Reserved.
 //
 
 import UIKit
