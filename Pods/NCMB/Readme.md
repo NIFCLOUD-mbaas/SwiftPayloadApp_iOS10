@@ -28,7 +28,7 @@
 テクニカルサポート窓口では、1年半以内にリリースされたSDKに対してのみサポート対応させていただきます。<br>
 定期的なバージョンのアップデートにご協力ください。<br>
 ※なお、mobile backend にて大規模な改修が行われた際は、1年半以内のSDKであっても対応出来ない場合がございます。<br>
-その際は[informationブログ](http://info.biz.nifty.com/mb/)にてお知らせいたします。予めご了承ください。
+その際は[informationブログ](https://mbaas.nifcloud.com/info/)にてお知らせいたします。予めご了承ください。
 
 - v1.0.0
 
@@ -58,7 +58,7 @@ SDKの改修をされる際には、ご一読ください。
 
 - [ニフクラ mobile backend](https://mbaas.nifcloud.com/)
 - [ドキュメント](https://mbaas.nifcloud.com/doc/current/)
-- [ユーザーコミュニティ](https://github.com/NIFCloud-mbaas/UserCommunity)
+- [ユーザーコミュニティ](https://github.com/NIFCLOUD-mbaas/UserCommunity)
 
 ## サンプル
 
