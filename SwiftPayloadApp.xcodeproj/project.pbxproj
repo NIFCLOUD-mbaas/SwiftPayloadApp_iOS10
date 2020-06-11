@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -100,12 +100,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BD32A3451DA1F7FB005D778E /* Build configuration list for PBXNativeTarget "SwiftPayloadApp" */;
 			buildPhases = (
+				652395769012D686F471F339 /* [CP] Check Pods Manifest.lock */,
 				2598C6ED429CA41483410BA6 /* 📦 Check Pods Manifest.lock */,
 				BD32A32F1DA1F7FB005D778E /* Sources */,
 				BD32A3301DA1F7FB005D778E /* Frameworks */,
 				BD32A3311DA1F7FB005D778E /* Resources */,
 				08C2480D6AFFE7E5F654DEAB /* 📦 Embed Pods Frameworks */,
-				F847A9517FBCE193905C7FCC /* 📦 Copy Pods Resources */,
+				8F44CAA714F086F0B9BE7E9F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,12 +125,10 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = "NIFTY Corporation";
+				ORGANIZATIONNAME = "NIFCLOUD mobile backend";
 				TargetAttributes = {
 					BD32A3321DA1F7FB005D778E = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 796KW2587D;
-						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -142,10 +141,11 @@
 				};
 			};
 			buildConfigurationList = BD32A32E1DA1F7FB005D778E /* Build configuration list for PBXProject "SwiftPayloadApp" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -203,19 +203,44 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F847A9517FBCE193905C7FCC /* 📦 Copy Pods Resources */ = {
+		652395769012D686F471F339 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftPayloadApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F44CAA714F086F0B9BE7E9F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SwiftPayloadApp/Pods-SwiftPayloadApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NCMB/NCMB.framework",
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NCMB.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftPayloadApp/Pods-SwiftPayloadApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftPayloadApp/Pods-SwiftPayloadApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -342,7 +367,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -354,15 +380,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SwiftPayloadApp/SwiftPayloadApp.entitlements;
-				DEVELOPMENT_TEAM = 796KW2587D;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftPayloadApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.co.nifty.mobile.backend;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nifcloud.SwiftPayloadApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "d42255b0-5857-4f22-830f-f80088648dc7";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -374,11 +405,14 @@
 				CODE_SIGN_ENTITLEMENTS = SwiftPayloadApp/SwiftPayloadApp.entitlements;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftPayloadApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.co.nifty.mobile.backend;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nifcloud.SwiftPayloadApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
