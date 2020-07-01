@@ -63,8 +63,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     payloadKeyData.append(key0)
 
                     let value0 = String(describing: value[i])
-                    payloadValueData.append(value0)
-
+                    if (key0 == "aps") {
+                        payloadValueData.append(self.json(from: value[i]) ?? "")
+                    } else {
+                        payloadValueData.append(value0)
+                    }
+                    
                     NSLog("<<device_log>>:key[\(key0)], value[\(value0)]")
 
                 }
@@ -134,10 +138,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 if let unwrapValue = value0 {
                     if key0 == "aps" {
+                        payloadValueData.append(self.json(from: unwrapValue) ?? "")
+                    } else {
                         let apsUnwrapValue = String(describing: unwrapValue)
                         payloadValueData.append(apsUnwrapValue)
-                    } else {
-                        payloadValueData.append(unwrapValue as! String)
                     }
 
                     print("key[\(key0)], value[\(unwrapValue)]")
@@ -153,6 +157,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         }
 
+    }
+    
+    func json(from object:Any) -> String? {
+        guard let data = try? JSONSerialization.data(withJSONObject: object, options: []) else {
+            return nil
+        }
+        return String(data: data, encoding: String.Encoding.utf8)
     }
 
 }
