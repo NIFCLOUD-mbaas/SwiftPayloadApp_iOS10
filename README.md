@@ -1,13 +1,12 @@
-# 【iOS10 Swift】プッシュ通知からデータを取得してみよう！（ペイロード）
-*2016/10/07作成*
+# 【Swift】プッシュ通知からデータを取得してみよう！（ペイロード）
+*2016/10/07作成（2020/07/08更新）*
 
 ![画像1](/readme-img/001.png)
+
 
 ## 概要
 * [ニフクラmobile backend](https://mbaas.nifcloud.com/)の『プッシュ通知』機能とプッシュ通知を受信する際、プッシュ通知の『ペイロードデータを取得する』機能を実装したサンプルプロジェクトです
 * 簡単な操作ですぐに [ニフクラmobile backend](https://mbaas.nifcloud.com/)の機能を体験いただけます★☆
-* このサンプルはiOS10に対応しています
-    * iOS8以上でご利用いただけます
 
 ## ニフクラmobile backendって何？？
 スマートフォンアプリのバックエンド機能（プッシュ通知・データストア・会員管理・ファイルストア・SNS連携・位置情報検索・スクリプト）が**開発不要**、しかも基本**無料**(注1)で使えるクラウドサービス！
@@ -19,8 +18,9 @@
 ## 動作環境
 * Mac OS X 10.14.4(Mojave)
 * Xcode ver. 11.2
-* iPhone6 ver. 12.1.4 
-    * このサンプルアプリは、プッシュ通知を受信する必要があるため実機ビルドが必要です
+* iPhone8 var. 13.3
+* iPhone6 ver. 12.1.4
+  * このサンプルアプリは、プッシュ通知を受信する必要があるため実機ビルドが必要です
 
 ※上記内容で動作確認をしています
 
@@ -52,15 +52,16 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 ![画像4](/readme-img/004.png)
 
 * 続けてプッシュ通知の設定を行います
-* ここで⑦APNs用証明書(.p12)の設定も行います
+* 「アプリ設定」＞「プッシュ通知」を開きます
+  * プッシュ通知の許可：「許可する」を選択して「保存する」をクリックします
+  * 証明書（p12）：「⑦APNs用証明書(.p12)」をここに設定します
 
 ![画像5](/readme-img/005.png)
 
-### 2. [GitHub](https://github.com/NIFCLOUD-mbaas/SwiftPayloadApp_iOS10.git)からサンプルプロジェクトのダウンロード
+### 2. GitHubからサンプルプロジェクトのダウンロード
 
 * 下記リンクをクリックしてプロジェクトをダウンロードをMacにダウンロードします
-
- * __[SwiftPayloadApp](https://github.com/NIFCLOUD-mbaas/SwiftPayloadApp_iOS10/archive/master.zip)__
+ * https://github.com/NIFCLOUD-mbaas/SwiftPayloadApp/archive/master.zip
 
 ### 3. Xcodeでアプリを起動
 
@@ -90,30 +91,31 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
     * Accounts画面が開いたら、左下の「＋」をクリックします。
     * Apple IDとPasswordを入力して、「Add」をクリックします
 
- ![画像i29](/readme-img/i029.png)
+![画像i29](/readme-img/i029.png)
 
- * 追加されると、下図のようになります。追加した情報があっていればOKです
- * 確認できたら閉じます。
+* 追加されると、下図のようになります。追加した情報があっていればOKです
+* 確認できたら閉じます。
 
- ![画像i30](/readme-img/i030.png)
+![画像i30](/readme-img/i030.png)
 
-* 「TARGETS」 ＞「General」を開きます
+* 次に「TARGETS」 ＞「General」を開きます
+* 「Idenrity」＞「Bundle Identifier」を入力します
+ * AppID 作成時に指定した「Bundle ID」を入力してください
 
-![画像14](/readme-img/014.png)
+<center><img src="readme-img/020.png" alt="画像20" width="450px"></center>
 
-* 「Identity」＞「Bundle Identifier」を入力します
- * 「Bundle Identifier」にはAppID作成時に指定した「Bundle ID」を入力してください
-* 「Signing(Debug)」＞「Provisioning Profile」を設定します
- * 今回使用するプロビジョニングプロファイルをプルダウンから選択します
- * プロビジョニングプロファイルはダウンロードしたものを一度 __ダブルクリック__ して認識させておく必要があります（プルダウンに表示されない場合はダブルクリックを実施後設定してください）
- * 選択すると以下のようになります
- ![画像15](/readme-img/015.png)
+* 次に「TARGETS」 ＞「Signing & Capabilities」を開きます
+* 「Teame」を選択します
+ * 先ほど「Preferences」で設定したアカウント情報を選択します
+ * 「Bundle Identifier」に応じて正しい「Provisioning Profile」が選択されればOKです
+ * 正しく読み込まれない場合は、ダウンロードしたプロビジョニングプロファイルを一度 __ダブルクリック__ して読み込んだ後リトライしてください
 
-* 「TARGETS」＞「Capabilities」を開き、「Push Notifications」を __ON__ に設定します
- * 設定すると以下のようになります
- ![画像16](/readme-img/016.png)
+<center><img src="readme-img/021.png" alt="画像21" width="450px"></center>
 
-* 設定は完了です
+* 上記画像の下方に表示されている「Push Notifications」はプッシュ通知を利用するために必要な設定です
+ * このサンプルでは予め設定してあります
+ * 上方「+Capability」から追加できます
+* これで準備は完了です
 * lightningケーブルで登録した動作確認用iPhoneをMacにつなぎます
 * Xcode画面で左上で、接続したiPhoneを選び、実行ボタン（さんかくの再生マーク）をクリックします
 
@@ -154,9 +156,9 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
  * サンプルプロジェクトに実装済みの内容
 
 ### ペイロードデータについて
-* ニフクラmobile backendのダッシュボードで入力した内容は以下のようなJSONデータとして、端末に届きます
+* ニフクラmobile backendのダッシュボードで入力した内容は以下のようなJSONデータで取得できます
 
-```JSON
+```json
 {
     "aps" : {
         "alert" : {
@@ -165,16 +167,16 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
         },
         "sound" : "default"
     },
-    "com.nifty.PushId" : "********",
+    "com.nifcloud.mbaas.PushId" : "********",
     "data" : "json",
-    "com.nifty.RichUrl" : "https://mbaas.nifcloud.com/"
+    "com.nifcloud.mbaas.RichUrl" : "https://mbaas.nifcloud.com/"
 }
 ```
 
 * 「aps」の１つ下の階層に「alert」があり、この１つ下の階層にダッシュボードで入力した「メッセージ」と「タイトル」が、それぞれ「body」と「title」に設定されます
 * ダッシュボードで「音声ファイル名」を設定した場合、「aps」の１つ下の階層に「sound」に設定されます
 * ダッシュボードで「JSON」に入力したデータはそのまま追加されて設定されます
-* ダッシュボードで「URL」に設定した場合、「com.nifty.RichUrl」として設定されます
+* ダッシュボードで「URL」に設定した場合、「com.nifcloud.mbaas.RichUrl」として設定されます
 
 ### サンプルプロジェクトに実装済みの内容
 #### SDKのインポートと初期設定
@@ -182,76 +184,7 @@ __[【iOS】プッシュ通知の受信に必要な証明書の作り方(開発�
 
 #### コード紹介
 ##### デバイストークン取得とニフクラmobile backendへの保存
- * `AppDelegate.swift`の`didFinishLaunchingWithOptions`メソッドにAPNsに対してデバイストークンの要求するコードを記述し、デバイストークンが取得された後に呼び出される`didRegisterForRemoteNotificationsWithDeviceToken`メソッドを追記をします
- * デバイストークンの要求はiOSのバージョンによってコードが異なります
-
-```swift
-//
-//  AppDelegate.swift
-//  SwiftPayloadApp
-//
-
-import UIKit
-import UserNotifications
-import NCMB
-
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-    // APIキーの設定
-    let applicationkey = "YOUR_NCMB_APPLICATIONKEY"
-    let clientkey      = "YOUR_NCMB_CLIENTKEY"
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        // SDKの初期化
-        NCMB.setApplicationKey(applicationkey, clientKey: clientkey)
-
-        // デバイストークンの要求
-        if #available(iOS 10.0, *){
-            /** iOS10以上 **/
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .badge, .sound]) {granted, error in
-                if error != nil {
-                    // エラー時の処理
-                    return
-                }
-                if granted {
-                    // デバイストークンの要求
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
-            }
-        } else {
-            /** iOS8以上iOS10未満 **/
-            //通知のタイプを設定したsettingを用意
-            let setting = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            //通知のタイプを設定
-            application.registerUserNotificationSettings(setting)
-            //DevoceTokenを要求
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-
-        return true
-    }
-
-    // デバイストークンが取得されたら呼び出されるメソッド
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // 端末情報を扱うNCMBInstallationのインスタンスを作成
-        let installation : NCMBInstallation = NCMBInstallation.current()
-        // デバイストークンの設定
-        installation.setDeviceTokenFrom(deviceToken)
-        // 端末情報をデータストアに登録
-        installation.saveInBackground {error in
-            if error != nil {
-                // 端末情報の登録に失敗した時の処理                
-            } else {
-                // 端末情報の登録に成功した時の処理
-            }
-        }
-}
-```
+* `AppDelegate.swift`の`didFinishLaunchingWithOptions`メソッドにAPNsに対してデバイストークンの要求するコードを記述し、デバイストークンが取得された後に呼び出される`didRegisterForRemoteNotificationsWithDeviceToken`メソッドを追記をします
 
 ##### ペイロード取得
 
@@ -265,27 +198,22 @@ _アプリ非起動時に受信する場合_
 * 次にアプリが起動されたときにペイロードを取得するため、`didFinishLaunchingWithOptions`メソッド内に記述します
 
 ```swift
-// 【ペイロード：アプリ非起動時】アプリが起動されたときにプッシュ通知の情報を取得する
-        if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
-
-            //プッシュ通知情報の取得
-            /* 省略 */    
+// 【ペイロード：アプリ非起動時に受信】アプリが起動されたときにプッシュ通知の情報を取得する
+if let remoteNotification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? NSDictionary {
+  /* 省略 */
 }
+
 ```
 
 _アプリ起動時に受信する場合_
 * 起動中に受信するため、`didReceiveRemoteNotification`メソッドを追記し、記述します
 
 ```swift
-// 【ペイロード：アプリ起動時】アプリが起動中にプッシュ通知の情報を取得する
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-
-        // プッシュ通知情報の取得
-        /* 省略 */
+// 【ペイロード：アプリ起動時に受信】アプリが起動中にプッシュ通知の情報を取得する
+func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+  /* 省略 */
 }
 ```
 
 ## 参考
-* ニフクラmobile backend の[ドキュメント（プッシュ通知）](https://mbaas.nifcloud.com/doc/current/push/basic_usage_ios.html)をSwift版に書き換えたドキュメントをご用意していますので、ご活用ください
-* 同じ内容の【Objective-C】版もご用意しています
- * [ObjcPayloadApp_iOS10](--準備中--)
+* [プッシュ通知 \(Swift\) : 基本的な使い方 \| ニフクラ mobile backend](https://mbaas.nifcloud.com/doc/current/push/basic_usage_swift.html)
