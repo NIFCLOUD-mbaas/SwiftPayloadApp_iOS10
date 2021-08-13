@@ -4,6 +4,11 @@ platform :ios, '10.0'
 use_frameworks!
 
 target 'SwiftPayloadApp' do
-    pod 'NCMB', :git => 'https://github.com/NIFCloud-mbaas/ncmb_swift.git'
+    pod 'NCMB', :git => 'https://github.com/NIFCLOUD-mbaas/ncmb_swift.git'
+    
+    target 'SwiftPayloadAppUITests' do
+      inherit! :search_paths
+      pod 'NCMB', :git => 'https://github.com/NIFCLOUD-mbaas/ncmb_swift.git'
+    end
 end
 
