@@ -16,10 +16,9 @@
 ![画像2](/readme-img/002.png)
 
 ## 動作環境
-* Mac OS 10.15(Catalina)
-* Xcode ver. 12.0
-* Simulator ver.12.0
-* iPhone11 (iOS14.0)
+* Mac OS 11.5.2(Big Sur)
+* Xcode ver. 13.2.1
+* iPhone 11 Pro Max (iOS15.2.1)
   * このサンプルアプリは、プッシュ通知を受信する必要があるため実機ビルドが必要です
 
 ※上記内容で動作確認をしています
